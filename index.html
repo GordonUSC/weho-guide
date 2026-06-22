@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WeHo · The Boystown Field Guide</title>
+<meta name="description" content="A field guide to gay nightlife in West Hollywood.">
+<style>
+/* Bright Pride visual language — a deliberate departure from the dark dossiers. */
+:root{
+  --ink:#1a1530;--bg:#fff7fb;--card:#ffffff;--line:#f0d9e6;--mut:#6b6480;
+  --red:#e6394a;--orange:#ff8a3d;--yellow:#ffcb3d;--green:#37c98a;--blue:#3aa7ff;--violet:#9a5cff;--pink:#ff5fa2;
+  --serif:"Hoefler Text","Iowan Old Style",Palatino,Georgia,serif;
+  --sans:"Avenir Next","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+a{color:var(--violet)}
+.rainbow{height:7px;background:linear-gradient(90deg,var(--red),var(--orange),var(--yellow),var(--green),var(--blue),var(--violet));position:sticky;top:0;z-index:50}
+
+.cover{padding:64px 0 40px;text-align:center;position:relative;overflow:hidden}
+.cover .glow{position:absolute;inset:-20% -10% auto;height:420px;z-index:0;filter:blur(60px);opacity:.5;
+  background:radial-gradient(closest-side,var(--pink),transparent),radial-gradient(closest-side,var(--blue),transparent) 70% 40%,radial-gradient(closest-side,var(--yellow),transparent) 30% 60%}
+.cover .in{position:relative;z-index:2}
+.eyebrow{font-family:var(--sans);letter-spacing:.34em;text-transform:uppercase;font-size:12px;color:var(--violet)}
+.cover h1{font-size:clamp(46px,11vw,104px);line-height:.94;margin:.14em 0 .1em;font-weight:600;letter-spacing:-.02em;
+  background:linear-gradient(100deg,var(--red),var(--orange),var(--pink),var(--violet),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cover .dek{font-style:italic;color:var(--mut);font-size:20px;max-width:600px;margin:0 auto}
+
+.note{background:#fff;border:1px solid var(--line);border-left:5px solid var(--yellow);border-radius:14px;padding:18px 20px;margin:26px 0;font-family:var(--sans);font-size:14.5px;color:#544c66;box-shadow:0 18px 40px -30px rgba(120,40,90,.4)}
+.note b{color:var(--ink)}
+
+section{padding:34px 0}
+.k{font-family:var(--sans);letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--violet);margin-bottom:6px}
+.h{font-size:clamp(26px,4.6vw,40px);line-height:1.06;font-style:italic;font-weight:600;margin:.05em 0 .4em}
+.lede{color:#473f5c}
+
+.venues{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.v{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:0 22px 50px -36px rgba(120,40,90,.5);position:relative;overflow:hidden}
+.v::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px}
+.v.anchor::before{background:linear-gradient(var(--blue),var(--green))}
+.v.c1::before{background:var(--pink)}.v.c2::before{background:var(--orange)}.v.c3::before{background:var(--violet)}.v.c4::before{background:var(--green)}.v.c5::before{background:var(--red)}
+.v .badge{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);font-weight:700}
+.v h3{margin:.2em 0 .1em;font-size:23px}
+.v .where{font-family:var(--sans);font-size:12.5px;color:var(--mut);margin-bottom:8px}
+.v p{font-size:15px;line-height:1.5;color:#4a4360;margin:.3em 0 .6em}
+.v a{font-family:var(--sans);font-size:12.5px;color:var(--blue);text-decoration:none;font-weight:600}
+@media(max-width:640px){.venues{grid-template-columns:1fr}}
+
+.map{margin-top:22px;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 22px 50px -36px rgba(120,40,90,.5)}
+.map iframe{width:100%;height:300px;border:0;display:block}
+
+.dq-ask{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 22px 50px -36px rgba(120,40,90,.5)}
+.dq-row{display:flex;gap:8px}
+.dq-row input{flex:1;background:#fdf3f8;border:1px solid var(--line);border-radius:12px;padding:13px 15px;color:var(--ink);font-family:var(--sans);font-size:15px}
+.dq-row input:focus{outline:2px solid var(--violet);outline-offset:1px}
+.dq-row button{background:linear-gradient(120deg,var(--pink),var(--violet));color:#fff;border:0;border-radius:12px;padding:0 18px;font-family:var(--sans);font-weight:700;cursor:pointer}
+.dq-chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
+.dq-chip{font-family:var(--sans);font-size:12.5px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:7px 13px;cursor:pointer;background:#fff}
+.dq-chip:hover{color:var(--ink);border-color:var(--violet)}
+.dq-ans{margin-top:14px;font-family:var(--sans);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.dq-ans .by{color:var(--violet);font-size:11px;letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:5px;font-weight:700}
+
+footer{padding:30px 0 60px;color:var(--mut);font-family:var(--sans);font-size:12px;border-top:1px solid var(--line)}
+.reveal{opacity:1;transform:none}body.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}body.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){body.js .reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="rainbow"></div>
+
+<header class="cover">
+  <div class="glow"></div>
+  <div class="wrap in">
+    <div class="eyebrow">West Hollywood · for Gordon</div>
+    <h1>The Boystown<br>Field Guide.</h1>
+    <p class="dek">Your map to the heart of LA's gay nightlife, the Santa Monica Boulevard strip that never really sleeps.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="note reveal">
+    <b>One honest note up front.</b> My live search tools are having an outage right now, so I couldn't pull tonight's exact lineups and one-off party dates. What's below is the real, reliable lay of the land, the iconic spots and what each is known for. For tonight's specific events, tap each venue's Instagram or give me a minute to refresh when search is back. Confirm current hours before you head out.
+  </div>
+
+  <section class="reveal">
+    <div class="k">The corridor</div>
+    <h2 class="h">It all happens on Santa Monica Blvd.</h2>
+    <p class="lede">Boystown is the stretch of Santa Monica Boulevard between roughly Robertson and La Cienega. Bars, patios, dance floors, and drag, all walkable, all shoulder to shoulder. Start anywhere, drift down the block, and let the night find you.</p>
+    <div class="map"><iframe loading="lazy" title="Boystown WeHo" src="https://maps.google.com/maps?q=Santa%20Monica%20Blvd%20%26%20San%20Vicente%2C%20West%20Hollywood%20CA&z=15&output=embed"></iframe></div>
+  </section>
+
+  <section class="reveal">
+    <div class="k">The spots</div>
+    <h2 class="h">Where to point your night.</h2>
+    <div class="venues">
+      <div class="v anchor">
+        <div class="badge">Start here · Alex works here</div>
+        <h3>Gym Sportsbar</h3>
+        <div class="where">8919 Santa Monica Blvd</div>
+        <p>Your home base. The friendly, easygoing gay sports bar, and where Alex Rogers is. Big games, cold drinks, no pretense. The natural first stop, say hi to Alex.</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Gym%20Sportsbar%208919%20Santa%20Monica%20Blvd%20West%20Hollywood" target="_blank" rel="noopener">Open in Maps →</a>
+      </div>
+      <div class="v c1">
+        <div class="badge">The icon</div>
+        <h3>The Abbey</h3>
+        <div class="where">Santa Monica Blvd, WeHo</div>
+        <p>The most famous gay bar in the world for a reason. Cavernous patios, go-go energy, cocktails, and a scene. The one out-of-towners ask about, and locals still end up at.</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=The%20Abbey%20West%20Hollywood" target="_blank" rel="noopener">Open in Maps →</a>
+      </div>
+      <div class="v c2">
+        <div class="badge">Dance + drag</div>
+        <h3>Micky's</h3>
+        <div class="where">Santa Monica Blvd, WeHo</div>
+        <p>A WeHo institution. Dancing, go-go, and drag energy on the main strip. Loud, fun, unapologetic.</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Micky's%20West%20Hollywood" target="_blank" rel="noopener">Open in Maps →</a>
+      </div>
+      <div class="v c3">
+        <div class="badge">Patio + crowd</div>
+        <h3>Rocco's WeHo</h3>
+        <div class="where">Santa Monica Blvd, WeHo</div>
+        <p>Big, social, and reliably packed. Great for a group, a patio drink, and watching the strip go by.</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Rocco's%20WeHo%20West%20Hollywood" target="_blank" rel="noopener">Open in Maps →</a>
+      </div>
+      <div class="v c4">
+        <div class="badge">Sports + easy</div>
+        <h3>Beaches WeHo</h3>
+        <div class="where">Santa Monica Blvd, WeHo</div>
+        <p>Bright, beachy, sports-friendly tropical vibe. An easy, low-key spot to land with friends.</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Beaches%20Tropicana%20West%20Hollywood" target="_blank" rel="noopener">Open in Maps →</a>
+      </div>
+      <div class="v c5">
+        <div class="badge">Dive + character</div>
+        <h3>Fubar</h3>
+        <div class="where">Santa Monica Blvd, WeHo</div>
+        <p>The smaller, grittier, more underground end of the strip. For when you want character over polish.</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Fubar%20West%20Hollywood" target="_blank" rel="noopener">Open in Maps →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="k">The season</div>
+    <h2 class="h">Pride lives here.</h2>
+    <p class="lede">West Hollywood is home to one of the world's biggest Pride celebrations, a June run of a music festival, rallies, and community fairs. The headline WeHo Pride weekend is typically early June, so the big parade has likely just passed for 2026, but Pride energy lingers on the strip all month. (I'll confirm exact remaining dates the moment my search tools recover.)</p>
+  </section>
+
+  <section class="reveal">
+    <div class="k">Ask me anything</div>
+    <h2 class="h">Need a rec? I'm here.</h2>
+    <div class="dq-ask">
+      <form class="dq-row" id="dqForm" autocomplete="off">
+        <input id="dqIn" placeholder="Ask: where should I start? best patio? where's Alex?…" aria-label="Ask Darby">
+        <button type="submit">Ask</button>
+      </form>
+      <div class="dq-chips" id="dqChips"></div>
+      <div class="dq-ans" id="dqAns"></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">The Boystown Field Guide · West Hollywood · June 20, 2026 · Venue character is evergreen; confirm current hours, status, and tonight's lineups on each spot's socials. Live event listings unavailable at build time (search outage). Made by Darby for Gordon.</div></footer>
+
+<script>
+document.body.classList.add('js');
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce&&'IntersectionObserver'in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});}
+  else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+  var KB=[
+    {k:['start','first','begin','where should','where do','alex'],a:"Start at Gym Sportsbar (8919 Santa Monica Blvd) and say hi to Alex. It's the easy, friendly home base, then drift down the strip from there."},
+    {k:['abbey'],a:"The Abbey is the world-famous one, big patios, go-go energy, a real scene. Iconic for a reason."},
+    {k:['drag','show','perform'],a:"Micky's is your dancing-and-drag energy on the main strip. Loud and fun."},
+    {k:['patio','group','crowd','friends'],a:"Rocco's WeHo for a big social patio, or Beaches for a bright, easy tropical landing spot with friends."},
+    {k:['dive','underground','grit','chill'],a:"Fubar is the smaller, grittier, character-over-polish end of the strip."},
+    {k:['sport','game','watch'],a:"Gym Sportsbar (where Alex is) and Beaches are your sports-friendly picks."},
+    {k:['where','map','corridor','street','santa monica'],a:"Everything's on Santa Monica Blvd between roughly Robertson and La Cienega. All walkable, just drift down the block."},
+    {k:['pride','festival','parade'],a:"WeHo hosts one of the world's biggest Prides each June. The main weekend is usually early June, so the parade has likely just passed for 2026, but the energy lingers all month."},
+    {k:['event','tonight','lineup','happening'],a:"My live search is down right now, so I can't pull tonight's exact lineups. Tap each venue's Instagram for tonight, or give me a bit to refresh when search recovers."},
+    {k:['darby','who are you','ai'],a:"I'm Darby, Gordon's AI. I made this guide. Ask me where to start or what kind of night you want."}
+  ];
+  var FALLBACK="My live event search is down at the moment, so for tonight's specifics check the venue's Instagram. But ask me where to start, best patio, drag, sports, or where Alex is.";
+  var CHIPS=["Where should I start?","Where's Alex?","Best patio?","Where's the drag?","Is Pride still on?"];
+  var form=document.getElementById('dqForm'),inp=document.getElementById('dqIn'),ans=document.getElementById('dqAns'),chips=document.getElementById('dqChips');
+  CHIPS.forEach(function(c){var b=document.createElement('button');b.type='button';b.className='dq-chip';b.textContent=c;b.onclick=function(){inp.value=c;answer();};chips.appendChild(b);});
+  function answer(){var q=(' '+(inp.value||'').toLowerCase().trim()+' ');if(!q.trim())return;var best=null,score=0;
+    KB.forEach(function(e){var s=0;e.k.forEach(function(k){if(q.indexOf(k)>=0)s+=k.length;});if(s>score){score=s;best=e;}});
+    ans.innerHTML='<span class="by">Darby</span>'+(best?best.a:FALLBACK);}
+  form.addEventListener('submit',function(e){e.preventDefault();answer();});
+})();
+</script>
+</body>
+</html>
